@@ -1,0 +1,1276 @@
+/* ===================================
+   てつ加圧カイロ整体院
+   スタイルシート
+   =================================== */
+
+/* --- リセット & 基本設定 --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-main: #0077B6;
+  --color-main-light: #E6F4F8;
+  --color-main-dark: #005f8f;
+  --color-sub: #3CB371;
+  --color-sub-dark: #2E8B57;
+  --color-accent: #A0A0A0;
+  --color-cta: #0077B6;
+  --color-cta-hover: #005f8f;
+  --color-line: #06C755;
+  --color-line-hover: #05a648;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-white: #FFFFFF;
+  --color-bg: #FAFCFD;
+  --color-bg-alt: #E6F4F8;
+  --font-heading: "Poppins", "Noto Sans JP", sans-serif;
+  --font-body: "Noto Sans JP", sans-serif;
+  --font-catch: "Nunito", "Noto Sans JP", sans-serif;
+  --header-height: 70px;
+  --max-width: 1100px;
+  --transition: 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.8;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- ヘッダー --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-main {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-main);
+}
+
+.logo-sub {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-list a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-list a:hover {
+  color: var(--color-main);
+}
+
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-main);
+  transition: width var(--transition);
+}
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: var(--color-sub);
+  color: var(--color-white) !important;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.nav-cta::after {
+  display: none !important;
+}
+
+.nav-cta:hover {
+  background: var(--color-sub-dark);
+  color: var(--color-white) !important;
+}
+
+/* ハンバーガーメニュー */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1010;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* --- ヒーローセクション --- */
+.hero {
+  position: relative;
+  margin-top: var(--header-height);
+  height: 75vh;
+  min-height: 440px;
+  max-height: 650px;
+  overflow: hidden;
+}
+
+.hero-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 30, 55, 0.5);
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--color-white);
+  padding: 0 20px;
+  max-width: 720px;
+}
+
+.hero-kicker {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.hero-title {
+  font-family: var(--font-catch);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  color: var(--color-white);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-white);
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.hero-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hero-dot.active {
+  background: var(--color-white);
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--color-white);
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-arrow:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.hero-arrow-prev { left: 16px; }
+.hero-arrow-next { right: 16px; }
+
+/* --- ボタン --- */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-sub);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-sub-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(60, 179, 113, 0.35);
+}
+
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-main);
+  border: 2px solid var(--color-main);
+}
+
+.btn-secondary:hover {
+  background: var(--color-main);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-main);
+  border: 2px solid var(--color-main);
+}
+
+.btn-outline:hover {
+  background: var(--color-main);
+  color: var(--color-white);
+}
+
+.btn-cta-tel {
+  background: var(--color-main);
+  color: var(--color-white);
+}
+
+.btn-cta-tel:hover {
+  background: var(--color-main-dark);
+  transform: translateY(-2px);
+}
+
+.btn-line {
+  background: var(--color-line);
+  color: var(--color-white);
+}
+
+.btn-line:hover {
+  background: var(--color-line-hover);
+  transform: translateY(-2px);
+}
+
+.btn-lg {
+  padding: 16px 36px;
+  font-size: 16px;
+}
+
+.btn-lg small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* --- 特徴カードセクション --- */
+.features {
+  padding: 60px 0;
+  background: var(--color-bg);
+  margin-top: -30px;
+  position: relative;
+  z-index: 5;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 3px solid transparent;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-top-color: var(--color-main);
+}
+
+.feature-icon {
+  margin-bottom: 12px;
+}
+
+.feature-title {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-main);
+  margin-bottom: 6px;
+}
+
+.feature-text {
+  font-size: 13px;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+/* --- セクション共通 --- */
+.section-title {
+  font-family: var(--font-heading);
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-main);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--color-sub);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin-bottom: 40px;
+}
+
+/* --- 症状別セクション --- */
+.symptoms {
+  padding: 80px 0;
+  background: var(--color-white);
+}
+
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.symptom-card {
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.symptom-card:hover {
+  border-color: var(--color-main);
+  box-shadow: 0 4px 16px rgba(0, 119, 182, 0.1);
+}
+
+.symptom-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.symptom-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.symptom-text {
+  font-size: 13px;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.symptom-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-main);
+  transition: var(--transition);
+}
+
+.symptom-link:hover {
+  color: var(--color-sub);
+}
+
+/* --- 施術コース --- */
+.courses {
+  padding: 80px 0;
+  background: var(--color-bg-alt);
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.course-card {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.course-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.course-body {
+  padding: 20px;
+}
+
+.course-title {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.course-desc {
+  font-size: 13px;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.course-meta {
+  padding-top: 14px;
+  border-top: 1px solid var(--color-bg-alt);
+}
+
+.course-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-main);
+}
+
+.courses-more {
+  text-align: center;
+  margin-top: 36px;
+}
+
+/* --- 初めての方へ --- */
+.first-visit {
+  padding: 80px 0;
+  background: var(--color-white);
+}
+
+.first-visit-flow {
+  max-width: 700px;
+  margin: 0 auto 48px;
+}
+
+.flow-heading {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-main);
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.flow-steps {
+  counter-reset: none;
+}
+
+.flow-steps li {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-bg-alt);
+}
+
+.flow-steps li:last-child {
+  border-bottom: none;
+}
+
+.flow-step-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: var(--color-main);
+  color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.flow-steps strong {
+  display: block;
+  font-size: 15px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.flow-steps p {
+  font-size: 13px;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+.first-visit-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.first-visit-box {
+  background: var(--color-bg-alt);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.first-visit-box h3 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-main);
+  margin-bottom: 14px;
+}
+
+.first-visit-box ul {
+  list-style: none;
+}
+
+.first-visit-box li {
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 119, 182, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.first-visit-box li:last-child {
+  border-bottom: none;
+}
+
+.price-highlight {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-main);
+  font-size: 16px;
+}
+
+.first-visit-note {
+  font-size: 12px;
+  color: var(--color-text-light);
+  margin-top: 12px;
+}
+
+.first-visit-cta {
+  text-align: center;
+}
+
+/* --- 院長紹介 --- */
+.about {
+  padding: 80px 0;
+  background: var(--color-bg-alt);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.about-image img {
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-name {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.about-credentials {
+  font-size: 13px;
+  color: var(--color-main);
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 119, 182, 0.15);
+}
+
+.about-text p {
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 14px;
+  color: var(--color-text-light);
+}
+
+.about-qualifications {
+  margin-top: 20px;
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.about-qualifications h4 {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-main);
+  margin-bottom: 10px;
+}
+
+.about-qualifications ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.about-qualifications li {
+  font-size: 13px;
+  color: var(--color-text-light);
+  padding: 3px 0;
+}
+
+/* --- お客様の声 --- */
+.testimonials {
+  padding: 80px 0;
+  background: var(--color-white);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.testimonial-card {
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid var(--color-sub);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.testimonial-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.testimonial-name {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.testimonial-detail {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+
+.testimonial-stars {
+  color: #F5A623;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* --- お知らせ --- */
+.news {
+  padding: 80px 0;
+  background: var(--color-bg-alt);
+}
+
+.news-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(0, 119, 182, 0.12);
+}
+
+.news-item:first-child {
+  border-top: 1px solid rgba(0, 119, 182, 0.12);
+}
+
+.news-date {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--color-text-light);
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.news-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 12px;
+  border-radius: 20px;
+  background: var(--color-main);
+  color: var(--color-white);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.tag-campaign {
+  background: var(--color-sub);
+}
+
+.news-text {
+  font-size: 14px;
+  flex: 1;
+}
+
+/* --- CTAセクション --- */
+.cta {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--color-main), var(--color-main-dark));
+}
+
+.cta-inner {
+  text-align: center;
+  color: var(--color-white);
+}
+
+.cta-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.cta-text {
+  font-size: 15px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.cta .btn-secondary {
+  background: var(--color-white);
+  color: var(--color-main);
+  border-color: var(--color-white);
+}
+
+.cta .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.cta-note {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* --- 固定CTA（スマホ下部） --- */
+.fixed-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: var(--color-white);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.12);
+  padding: 8px 12px;
+  gap: 8px;
+  justify-content: center;
+}
+
+.fixed-cta-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 4px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-white);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.fixed-cta-tel { background: var(--color-main); }
+.fixed-cta-web { background: var(--color-sub); }
+.fixed-cta-line { background: var(--color-line); }
+
+.fixed-cta-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.fixed-cta-btn svg {
+  flex-shrink: 0;
+}
+
+/* --- フッター --- */
+.footer {
+  background: var(--color-text);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 60px 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.footer .logo-main { color: var(--color-white); }
+.footer .logo-sub { color: rgba(255, 255, 255, 0.5); }
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.footer-address {
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.footer-tel a {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-sub);
+}
+
+.footer-tel a:hover { color: var(--color-white); }
+
+.footer h4 {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.hours-table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+
+.hours-table th,
+.hours-table td {
+  padding: 6px 4px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hours-table th {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hours-note {
+  font-size: 11px;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav a {
+  font-size: 13px;
+  transition: var(--transition);
+}
+
+.footer-nav a:hover { color: var(--color-sub); }
+
+.sns-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sns-link {
+  font-size: 13px;
+  transition: var(--transition);
+}
+
+.sns-link:hover { color: var(--color-sub); }
+
+.footer-map {
+  margin-bottom: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.footer-map iframe { display: block; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 0;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* --- フェードインアニメーション --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+
+@media (max-width: 900px) {
+  .courses-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .symptoms-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .about-content { grid-template-columns: 240px 1fr; gap: 28px; }
+  .first-visit-info { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  :root { --header-height: 60px; }
+
+  .hamburger { display: flex; }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--color-white);
+    z-index: 1005;
+    transition: right 0.35s ease;
+    padding: 80px 32px 40px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+
+  .nav.open { right: 0; }
+
+  .nav-list { flex-direction: column; gap: 0; }
+  .nav-list li { width: 100%; }
+
+  .nav-list a {
+    display: block;
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid var(--color-bg-alt);
+  }
+
+  .nav-list a::after { display: none; }
+
+  .nav-cta {
+    text-align: center;
+    margin-top: 16px;
+    border-bottom: none !important;
+  }
+
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1002;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+  }
+
+  .nav-overlay.active { opacity: 1; visibility: visible; }
+
+  .hero { height: 60vh; min-height: 360px; }
+  .hero-title { font-size: 26px; }
+  .hero-subtitle { font-size: 13px; }
+  .hero-kicker { font-size: 11px; }
+  .hero-arrow { width: 36px; height: 36px; font-size: 18px; }
+
+  .features { margin-top: 0; padding: 40px 0; }
+  .features-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .feature-card {
+    flex-direction: row;
+    text-align: left;
+    padding: 20px;
+    gap: 14px;
+    border-top: none;
+    border-left: 3px solid transparent;
+  }
+
+  .feature-card:hover { border-top-color: transparent; border-left-color: var(--color-main); }
+
+  .section-title { font-size: 22px; }
+
+  .symptoms-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .symptom-card { padding: 20px 16px; }
+
+  .courses { padding: 50px 0; }
+  .courses-grid { grid-template-columns: 1fr; gap: 20px; }
+  .course-image img { height: 160px; }
+
+  .first-visit { padding: 50px 0; }
+  .first-visit-info { grid-template-columns: 1fr; }
+
+  .about { padding: 50px 0; }
+  .about-content { grid-template-columns: 1fr; }
+  .about-image { max-width: 280px; margin: 0 auto; }
+
+  .testimonials { padding: 50px 0; }
+  .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .news { padding: 50px 0; }
+  .news-item { flex-wrap: wrap; gap: 8px; padding: 14px 0; }
+  .news-date { min-width: auto; }
+  .news-text { flex-basis: 100%; }
+
+  .cta { padding: 50px 0; }
+  .cta-title { font-size: 20px; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn-lg { width: 100%; max-width: 300px; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-map iframe { height: 220px; }
+
+  /* 固定CTA表示 + フッター余白 */
+  .fixed-cta { display: flex; }
+  .footer { padding-bottom: 72px; }
+}
+
+@media (max-width: 400px) {
+  .hero-title { font-size: 22px; }
+  .btn { padding: 10px 24px; font-size: 14px; }
+  .symptoms-grid { grid-template-columns: 1fr; }
+}
